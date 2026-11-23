@@ -160,6 +160,7 @@ const I18N = {
     "startOldA": "今のアカウントにコードを追加してください。新しいアカウントは作らないでください。",
     "startCommercial": "現在はご自宅での家事タスクのみです。",
     "communityCta": "LINEで友だち追加",
+    "navLine": "LINEに参加",
     "communitySoon": "LINE公式アカウント（準備中）",
     "wiseCta": ""
   },
@@ -318,6 +319,7 @@ const I18N = {
     "startOldA": "Keep your existing account and add our code to it. Don't create a new account.",
     "startCommercial": "Household tasks only for now.",
     "communityCta": "Add us on LINE",
+    "navLine": "Join LINE",
     "communitySoon": "LINE account (coming soon)",
     "wiseCta": ""
   }
@@ -336,11 +338,11 @@ const CONFIG = {
   ABOUT_URL: "https://www.awign.com/",
 
   // Japan organization code (from the Fusion team). Blank = 準備中.
-  ORG_CODE: "",
+  ORG_CODE: "4P2F6RJE",
   ORG_NAME: "Awign - Residential - Japan",
 
   // LINE Official Account add-friend link (https://lin.ee/...). Blank = 準備中.
-  COMMUNITY_URL: "",
+  COMMUNITY_URL: "https://line.me/R/ti/p/@775evhxu",
 
   // Blank values hide the icon.
   SOCIAL: {

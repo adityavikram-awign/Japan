@@ -484,7 +484,16 @@
 
   /* ---------------- orchestration ---------------- */
 
+  // Compact LINE button in the top bar, left of the language toggle.
+  function renderNavLine() {
+    var host = document.getElementById("nav-line");
+    if (!CONFIG.COMMUNITY_URL) { host.innerHTML = ""; return; }
+    host.innerHTML = '<a class="navline" href="' + CONFIG.COMMUNITY_URL + '" target="_blank" rel="noopener" onclick="track(\'community_nav\')" aria-label="' +
+      esc(t().navLine) + '">' + LINE_ICON + '<span class="navline__t">' + esc(t().navLine) + "</span></a>";
+  }
+
   function renderAll() {
+    renderNavLine();
     renderText();
     renderSetup();
     renderDoDont();
