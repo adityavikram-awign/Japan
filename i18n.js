@@ -343,6 +343,14 @@ const CONFIG = {
 
   // LINE Official Account add-friend link (https://lin.ee/...). Blank = 準備中.
   COMMUNITY_URL: "https://line.me/R/ti/p/@775evhxu",
+  LINE_ID: "@775evhxu",
+
+  /* Registration form (join.html) → Google Sheet via Apps Script.
+     Paste the Web App URL ending in /exec. While blank, the LINE buttons
+     go straight to LINE and join.html runs in preview mode (nothing saved). */
+  FORM_ENDPOINT: "",
+  CONTACT_EMAIL: "aditya.vikram@awign.com",
+  CONTACT_PHONE: "+91 85819 54010",
 
   // Blank values hide the icon.
   SOCIAL: {

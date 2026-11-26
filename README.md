@@ -35,3 +35,9 @@ Same files as LATAM. The hero and Minute walkthrough use the English recordings 
 ```bash
 npx serve .
 ```
+
+## Sign-up form (join.html → Google Sheet → LINE)
+
+- `join.html` / `join.js` / `join.css`: name, kana (optional), email, mobile, prefecture, smartphone, head mount, 3 consent ticks. On success it shows the LINE add-friend button, QR (`assets/line-qr.svg`) and next steps. Ad parameters (utm_*, fbclid) and referrer are saved with each row.
+- `apps-script/Code.gs`: paste into the Sheet's Apps Script, deploy as Web app (Execute as: Me, Access: Anyone), then put the `/exec` URL in `CONFIG.FORM_ENDPOINT` in `i18n.js`.
+- While `FORM_ENDPOINT` is blank, every LINE button goes straight to LINE and the form runs in preview mode (nothing saved). Once set, LINE buttons send people who haven't signed up on that device to `join.html` first.

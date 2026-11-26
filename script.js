@@ -32,13 +32,25 @@
       .replace(/>/g, "&gt;");
   }
 
+  // Where every "join LINE" button points. Once the sign-up form is live,
+  // people who haven't registered on this device go to the form first.
+  function lineHref() {
+    var done = false;
+    try { done = !!localStorage.getItem("awign_jp_registered"); } catch (e) {}
+    return CONFIG.FORM_ENDPOINT && !done ? "join.html" : CONFIG.COMMUNITY_URL;
+  }
+  function lineAttrs() {
+    var href = lineHref();
+    return 'href="' + href + '"' + (href === "join.html" ? "" : ' target="_blank" rel="noopener"');
+  }
+
   // LINE Official Account button; shows 「準備中」 until the link is set.
   function communityLink(cls, ev) {
     if (!CONFIG.COMMUNITY_URL) {
       return '<span class="btn btn--line is-soon ' + (cls || "") + '" aria-disabled="true">' +
         LINE_ICON + esc(t().communitySoon) + "</span>";
     }
-    return '<a class="btn btn--line ' + (cls || "") + '" href="' + CONFIG.COMMUNITY_URL + '" target="_blank" rel="noopener" onclick="track(\'' + ev + '\')">' +
+    return '<a class="btn btn--line ' + (cls || "") + '" ' + lineAttrs() + ' onclick="track(\'' + ev + '\')">' +
       LINE_ICON + esc(t().communityCta) + "</a>";
   }
 
@@ -425,7 +437,11 @@
 
   function wireLinks() {
     var fc = document.getElementById("f-contact");
-    if (CONFIG.COMMUNITY_URL) fc.href = CONFIG.COMMUNITY_URL;
+    if (CONFIG.COMMUNITY_URL) {
+      fc.href = lineHref();
+      if (fc.getAttribute("href") === "join.html") fc.removeAttribute("target");
+      else fc.target = "_blank";
+    }
     else { fc.removeAttribute("href"); fc.textContent = t().communitySoon; }
     document.getElementById("f-official").href = CONFIG.OFFICIAL_PAGE_URL;
     document.getElementById("f-about").href = CONFIG.ABOUT_URL;
@@ -488,7 +504,7 @@
   function renderNavLine() {
     var host = document.getElementById("nav-line");
     if (!CONFIG.COMMUNITY_URL) { host.innerHTML = ""; return; }
-    host.innerHTML = '<a class="navline" href="' + CONFIG.COMMUNITY_URL + '" target="_blank" rel="noopener" onclick="track(\'community_nav\')" aria-label="' +
+    host.innerHTML = '<a class="navline" ' + lineAttrs() + ' onclick="track(\'community_nav\')" aria-label="' +
       esc(t().navLine) + '">' + LINE_ICON + '<span class="navline__t">' + esc(t().navLine) + "</span></a>";
   }
 
